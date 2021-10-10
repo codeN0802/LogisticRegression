@@ -1,0 +1,112 @@
+<html>
+<head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <!-- font-awesomecdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="/static/a.css" />
+</head>
+<style>
+    .predic__{
+    position: relative;
+    background: none;
+}
+</style>
+<body>
+    <canvas id="bg-night">
+        
+    </canvas>
+    <input type="checkbox" class="theme" id="theme">
+    <label for="theme">
+        <div class="img-box" id="moon"> 
+            <img src="/static/image/moon-svgrepo-com.svg" alt="">
+        </div>
+        <svg class="darkmode-icon" viewBox="0 0 64 64">
+            <circle class="sun" id="sun_center" cx="32" cy="32" r="12" />
+            <g>
+                <path class="rays" d="M 43,4 l0,12"></path>
+                <path class="rays" d="M 43,4 l0,12" transform="rotate(45)" transform-origin="50% 50%" />
+                <path class="rays" d="M 43,4 l0,12" transform="rotate(90)" transform-origin="50% 50%"/>
+                <path class="rays" d="M 43,4 l0,12" transform="rotate(135)" transform-origin="50% 50%"/>
+                <path class="rays" d="M 43,4 l0,12" transform="rotate(180)" transform-origin="50% 50%"/>
+                <path class="rays" d="M 43,4 l0,12" transform="rotate(225)" transform-origin="50% 50%"/>
+                <path class="rays" d="M 43,4 l0,12" transform="rotate(270)" transform-origin="50% 50%"/>
+                <path class="rays" d="M 43,4 l0,12" transform="rotate(315)" transform-origin="50% 50%"/>
+            </g>
+            </svg>
+        <svg id="cloudy_sun" class="cloudy" viewBox='0 0 100 100'>
+            <g>
+                <path class="cloudy-path" d="M 25,60 a 20,20 1 0,0 0,40 h 50  a 20,20 1 0,0 0,-40  a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z" />
+            </g>
+        <defs>
+            <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="30%" style="stop-color:rgb(168, 236, 236);stop-opacity:1" />
+                <stop offset="50%" style="stop-color:rgb(246, 166, 253);stop-opacity:1" />
+                <stop offset="70%" style="stop-color:rgb(129, 236, 250);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgb(255, 253, 150);stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        </svg>
+        <svg id="cloudy_moon" class="cloudy moon" viewBox='0 0 100 100'>
+            <g>
+                <path class="cloudy-path" d="M 25,60 a 20,20 1 0,0 0,40 h 50  a 20,20 1 0,0 0,-40  a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z" />
+            </g>
+            <defs>
+                <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="30%" style="stop-color:rgb(168, 236, 236);stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:rgb(246, 166, 253);stop-opacity:1" />
+                    <stop offset="70%" style="stop-color:rgb(129, 236, 250);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgb(255, 253, 150);stop-opacity:1" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </label>
+    <div class="predic__">
+        <div class="container py-5">
+            <div class="header text-center mb-5">
+                <h1 class="title">Dự Đoán Bệnh Tim</h1>
+            </div>
+            <form class="input_file" action='/', method="POST" enctype="multipart/form-data">
+                <div class="predict_wrapper">
+                    <input type="file" name="img" id="img" class="form-control">
+                    <div class="btn_predict">
+                        <input type="submit" value="Dự Đoán">
+                        </input>
+                    </div>
+                </div>
+                <div class="cut"></div>
+                <div class="img_nurse">
+                    <img src="/static/image/nurse.png" alt="nurse"/>
+                </div>
+                <div class="balloon">
+                    <div class="img_wrapper">
+                        <img src="/static/image/balloon.png"/>
+                        <div class="title_input">
+                            <div class="lable_wrapper">
+                                <label>Hãy Cho Em Biết Hình Ảnh:</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    
+            <div id="predict" class="">
+                <div class="result_img_wrapper">
+                    <img src="/static/image/result.svg"/>
+                </div>
+                <div class="result_content">
+                    {% if data %}
+                         <p id="prediction"> <span style="color:blue">Super Nurse predict</span>: {{data}}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/a.js">
+    
+</script>
+</html>

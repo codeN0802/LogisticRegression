@@ -1,0 +1,56 @@
+<html>
+<head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <!-- font-awesomecdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<style>
+    body{
+        height: 100%;
+        width:  100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(37deg,rgb(234, 255, 116) , rgb(179, 31, 192));
+        color: white;
+    }
+    .img{
+        height: 280px;
+        display: flex;
+        overflow: hidden;
+        border-radius: 25px;
+    }
+    .img img{
+        height: 110%;
+    }
+    .content{
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <div class="warning_wrapper">
+        <div class="img_wrapper">
+            <div class="overlay">
+            </div>
+            <div class="img">
+                <img src="/static/image/congrats-congratulations-banner-glitter-decoration-260nw-1096037438.jpg"/>
+            </div>
+        </div>
+        <div class="content">
+           {% if data %}
+                <p>{{data}}</p>
+            {% endif %}
+        </div>
+
+    </div>
+</body>
+</html>

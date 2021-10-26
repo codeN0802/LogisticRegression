@@ -18,23 +18,6 @@ def createFileList(myDir, format='.jpg'):
                 fullName = os.path.join(root, name)
                 fileList.append(fullName)
     return fileList
-# mydirN = 'stare'
-# myFileListN = createFileList(mydirN)
-# for file in myFileListN:
-#     if file.__contains__("0_n"):
-#         y.append(0)
-#     if file.__contains__("1_n"):
-#         y.append(1)
-#     img_file = Image.open(file)
-#     a = np.array(img_file)
-#     b = np.transpose(a).reshape(a.shape[0], a.shape[1] * a.shape[2])
-#     c = b.flatten()
-#     X.append(c)
-# Xn=np.array(X)
-# Yn=np.array(y)
-#
-# X_train , X_test , y_train, y_test = train_test_split(Xn,Yn,test_size=0.3,random_state=42)
-
 
 mydirtrain = 'stare_train'
 mydirtest = 'stare_test'
@@ -46,9 +29,9 @@ for file in myFileListTrain:
     if file.__contains__("1_train"):
         y_train.append(1)
     img_file = Image.open(file)
-    a = np.array(img_file)
-    b = np.transpose(a).reshape(a.shape[0], a.shape[1] * a.shape[2])
-    c = b.flatten()
+    a = np.array(img_file)/255
+
+    c = a.flatten()
     x_train.append(c)
 x_train1=np.array(x_train)
 y_train1=np.array(y_train)
@@ -62,9 +45,9 @@ for file in myFileListTest:
     if file.__contains__("1_test"):
         y_test.append(1)
     img_file = Image.open(file)
-    a = np.array(img_file)
-    b = np.transpose(a).reshape(a.shape[0], a.shape[1] * a.shape[2])
-    c = b.flatten()
+    a = np.array(img_file)/255
+
+    c = a.flatten()
     x_test.append(c)
 x_test1 = np.array(x_test)
 y_test1 = np.array(y_test)
